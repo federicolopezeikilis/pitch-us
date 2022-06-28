@@ -1,0 +1,13 @@
+{
+  "name": "deploy",
+  "version": "1.0.0",
+  "description": "",
+  "directories": {
+    "doc": "doc"
+  },
+  "scripts": {
+    "start": "cd api && npm start"
+  },
+  "author": "",
+  "license": "ISC"
+}
