@@ -58,7 +58,7 @@ export default function Interpretation({ token, userId, interpretation, song }) 
     return (
         <>
             <div className={'flex flex-col h-screen' + (chordView ? ' brightness-50' : '')}>
-                <header className="w-full fixed top-0 bg-white px-4 pt-4 pb-1 gap-4 shadow-custom-items z-50">
+                <header className="w-full bg-white px-4 pt-4 pb-1 gap-4 shadow-custom-items z-50">
                     <div className="flex flex-col gap-4">
                         <button className="w-8 h-8" onClick={onBackClick} >
                             <ChevronLeftImage />
@@ -82,7 +82,7 @@ export default function Interpretation({ token, userId, interpretation, song }) 
                     </div>
                 </header>
 
-                <div className="mb-4 pt-[204px] bg-primary flex-1 overflow-y-auto ">
+                <div className="mb-4 bg-primary flex-1 overflow-y-auto ">
                     <FlexColSection className="px-4 items-center">
 
                         <div className="w-full py-4 flex flex-col gap-2">
