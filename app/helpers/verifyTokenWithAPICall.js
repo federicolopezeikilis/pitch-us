@@ -26,7 +26,7 @@ export async function verifyTokenWithAPICall(req, res) {
 
                 return { token, userId }
             }
-        } else {
+        } else if(status === 401 || status === 404) {
             cookies.set('token')
 
             if (req.url.includes('/profile/settings')
