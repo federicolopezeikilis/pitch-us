@@ -4,7 +4,6 @@ import { context } from './context'
 
 export async function checkSpotifySession(token, code) {
     validateJWT(token)
-    debugger
     //TODO VALIDATE CODE
 
     const api = new Apium(context.API_URL)
@@ -24,7 +23,6 @@ export async function checkSpotifySession(token, code) {
 
     const data = JSON.parse(payload)
 
-    debugger
     if (status === 200) return data.isSessionActive
 
     else if (status >= 400 && status < 500) throw new Error(data.error)

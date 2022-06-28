@@ -1,16 +1,22 @@
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import { ArtistIconImage, ArtistsAndSongsResultsList, ChevronLeftImage, FavoriteImage, FlexColSection, Footer, Title2, Title, ButtonBlue } from '../../../components'
+import { ArtistIconImage, ArtistsAndSongsResultsList, ChevronLeftImage, FavoriteImage, FlexColSection, Footer, Title2, Title, ButtonBlue, Context } from '../../../components'
 import { retrieveSongsOfArtist } from '../../../logic'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { verifyTokenWithAPICall } from '../../../helpers'
 
 export default function Artist({ token, songs }) {
     const router = useRouter()
 
+    const { handleFeedback } = useContext(Context)
+
     const [likedArtist, setLikedArtist] = useState(false)
 
     const artist = songs[0].artist.name
+
+    const handleOnNewSongClick = () => {
+        handleFeedback('info', 'Login needed', 'You should log in to create an interpretation')
+    }
 
     const onBackClick = () => {
         router.back()
@@ -35,11 +41,11 @@ export default function Artist({ token, songs }) {
             </div>
         </header>
 
-        <FlexColSection className="items-center">
+        <FlexColSection className="flex-1 overflow-y-auto items-center">
             <div className="w-full h-14 px-4 bg-primary flex items-center justify-between">
                 <h3 className="text-xl text-myblack font-bold">Songs</h3>
                 <Link href='/create-interpretation'>
-                    <ButtonBlue>Add New Song</ButtonBlue>
+                    <ButtonBlue onClick={handleOnNewSongClick }>Add New Song</ButtonBlue>
                 </Link>
             </div>
             <ArtistsAndSongsResultsList songs={songs} />
@@ -49,13 +55,23 @@ export default function Artist({ token, songs }) {
 }
 
 export async function getServerSideProps({ params, req, res }) {
-    const { token } = await verifyTokenWithAPICall(req, res)
+    const obj = await verifyTokenWithAPICall(req, res)
 
     const songs = await retrieveSongsOfArtist(params.artistName)
 
-    return {
-        props: {
-            token, songs
+    if (obj) {
+        const { token } = obj
+
+        return {
+            props: {
+                token, songs
+            }
+        }
+    } else {
+        return {
+            props: {
+                songs
+            }
         }
     }
 }

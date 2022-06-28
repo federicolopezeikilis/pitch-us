@@ -1,5 +1,3 @@
-import Image from 'next/image'
-import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { SearchLink, HomeLink, CreateInterPretationLink, UserSessionLink, Context } from '../../components'
 import { useContext } from 'react'

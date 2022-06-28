@@ -1,4 +1,4 @@
-import { Input, SearchImage, ButtonBlue } from '..'
+import { SearchImage, ButtonBlue } from '..'
 
 export function SearchForm({ className, children, onChangeInput, onCancelClick, ...props }) {
     return (

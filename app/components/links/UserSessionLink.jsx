@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { UserSessionImage } from ".."
+import { UserSessionImage } from "../../components"
 
 export const UserSessionLink = ({ className, children, userLoggedIn, pageOn, onClick, ...props }) => {
     return (

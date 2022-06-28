@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { SearchImage } from ".."
+import { SearchImage } from "../../components"
 
 export const SearchLink = ({ className, children, pageOn, onClick, ...props }) => {
     return (

@@ -4,7 +4,6 @@ import Apium from '../vendor/Apium'
 import { context } from '.'
 
 export async function updatePassword(token, oldPassword, password, repeatPassword) {
-    debugger
     validateJWT(token)
     validatePassword(oldPassword, 'previous password')
     validatePassword(password, 'new password')

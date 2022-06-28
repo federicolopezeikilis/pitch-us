@@ -2,12 +2,17 @@ import Link from 'next/link'
 import { retrieveUser } from '../../../logic'
 import { verifyTokenWithAPICall } from '../../../helpers'
 import { useRouter } from 'next/router'
-import { AvatarDemo64Image, ChevronRightImage, FlexColSection, Footer, Header } from '../../../components'
+import { AvatarDemo64Image, ChevronRightImage, Context, FlexColSection, Footer, Header } from '../../../components'
+import { useContext } from 'react'
 
 export default function Settings({ token, user }) {
     const router = useRouter()
 
+    const { handleFeedback } = useContext(Context)
+
     const onLogOutClick = () => {
+        handleFeedback('success', 'Log out', 'Redirecting to login page')
+
         router.push('/logout')
     }
 

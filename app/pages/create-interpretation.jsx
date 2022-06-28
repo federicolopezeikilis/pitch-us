@@ -46,7 +46,7 @@ export default function CreateInterpretation({ token }) {
     }
 
     const onClickCreateArtist = event => {
-        debugger
+
         event.preventDefault()
 
         const artistName = event.target.input.value
@@ -129,12 +129,12 @@ export default function CreateInterpretation({ token }) {
 
     const onSubmitInterpretation = async event => {
         event.preventDefault()
-        debugger
+
         const content = event.target.textarea.value
 
         try {
             if (!artist.id) {
-                debugger
+
                 artist.id = await createArtist(token, artist.name)
             }
 
@@ -263,179 +263,23 @@ export default function CreateInterpretation({ token }) {
 
             </FlexColSection>
 
-            <Footer page="create-interpretation" userLoggedIn={!!token}/>
+            <Footer page="create-interpretation" userLoggedIn={!!token} />
         </div>
     )
-    {
-            /* 
-            BOTONES PREVIOUS Y NEXT LISTOS
-            <div className="p-4 flex justify-center items-center gap-4">
-
-                <button className="w-full rounded-full bg-white py-4 flex justify-center items-center gap-4">
-                    <ChevronLeftImage className="w-6 h-6" color="green" />
-                    <p className="font-medium text-myblue">Previous</p>
-                </button>
-
-                <button onClicklassName="w-full rounded-full bg-mygreen py-4 flex justify-center items-center gap-4">
-                    <p className="font-medium text-white">Next</p>
-                    <ChevronRightImage className="mt-0.5 w-6 h-6" color="white" />
-                </button>
-
-            </div> */}
 }
 
 export async function getServerSideProps({ req, res }) {
-    const { token } = await verifyTokenWithAPICall(req, res)
+    const obj = await verifyTokenWithAPICall(req, res)
 
-    return {
-        props: { token }
+    if (obj) {
+        const { token } = obj
+     
+        return {
+            props: { token }
+        }
+    } else {
+        return {
+            props: {}
+        }
     }
 }
-
-
-// return <>
-//     <Header />
-//     <FlexColSection>
-//         {!artist &&
-//             <form className="w-2/3 h-11/12"
-//                 onSubmit={onClickCreateArtist}
-//             >
-//                 <input className="w-full text-2xl bg-gray-200" type="search" name="artist" id="artist" placeholder="Artist"
-//                     onChange={onChangeQueryArtist}
-//                 ></input>
-//                 {queryArtist && artistsDisplayed && artistsDisplayed.length === 0 &&
-//                     <>
-//                         <p>We don't have interpretations for this artist. Want to create?</p>
-//                         <button type="submit">Accept</button>
-//                     </>
-//                 }
-//             </form>}
-
-//     </FlexColSection>
-//     <Footer />
-// </>
-
-
-
-{/* 
-        
-        LISTO BORRAR
-        <div className="flex flex-col gap-1">
-                    <p className="font-medium text-myblack">Pick an artist</p>
-                    <div className="w-full px-4 py-3 bg-white border border-inputBg rounded flex gap-2">
-                    <SearchImage className="w-5 h-5" />
-                    <input className="w-full bg-white focus:outline-none text-sm text-mygrey" type="search" />
-                    </div>
-                </div> */}
-
-{/* <main>
-
-
-                TODAVÍA FALTA!!
-                {!artist &&
-                    <form className="w-2/3 h-11/12"
-                        onSubmit={onClickCreateArtist}
-                    >
-                        <input className="w-full text-2xl bg-gray-200" type="search" name="artist" id="artist" placeholder="Artist"
-                            onChange={onChangeQueryArtist}
-                        ></input>
-                        {queryArtist && artistsDisplayed && artistsDisplayed.length === 0 &&
-                            <>
-                                <p>We don't have interpretations for this artist. Want to create?</p>
-                                <button type="submit">Accept</button>
-                            </>
-                        }
-                    </form>}
-
-                        LISTO PARA BORRAR!!
-                {artistsDisplayed &&
-                    artistsDisplayed.map(artist => {
-                        return <li className="w-11/12 h-14 bg-gray-200" key={artist.id}>
-                            <button className="px-2 w-full h-full flex items-center justify-start"
-                                onClick={
-                                    event => {
-                                        event.preventDefault()
-
-                                        onClickArtist(artist)
-                                    }}
-                            >{artist.name}
-                            </button>
-                        </li>
-                    })
-                }
-
-                LISTO PARA BORRAR!!
-                {artist &&
-                    <div>
-                        <p className="inline">Artist: {artist.name}</p>
-                        <button className="mx-1 bg-gray-200"
-                            onClick={onClickChangeArtist}
-                        >Change</button>
-                    </div>
-                }
-
-                {artist && !song &&
-                    <form className="w-2/3 h-11/12"
-                        onSubmit={onClickCreateSong}
-                    >
-                        <input className="w-full text-2xl bg-gray-200" type="search" name="song" id="song" placeholder="Song"
-                            onChange={onChangeQuerySong}>
-                        </input>
-                        {!songsDisplayed &&
-                            <>
-                                <p>We don't have interpretations for this song. Want to create the first version?</p>
-                                <button type="submit">Accept</button>
-                            </>
-                        }
-                    </form>}
-
-                {songsDisplayed &&
-                    songsDisplayed.map(song => {
-                        return <li className="w-11/12 h-14 bg-gray-200" key={song.id}>
-                            <button className="px-2 w-full h-full flex items-center justify-start"
-                                onClick={
-                                    event => {
-                                        event.preventDefault()
-
-                                        onClickSong(song)
-                                    }}
-                            >{song.name}
-                            </button>
-                        </li>
-                    })
-                }
-
-                LISTO PARA BORRAR
-                {artist && song &&
-                    <div>
-                        <p className="inline">Song: {song.name}</p>
-                        <button className="mx-1 bg-gray-200"
-                            onClick={onClickChangeSong}
-                        >Change</button>
-                    </div>
-                }
-
-                LISTO PARA BORRAR
-                {artist && song &&
-                    <form
-                        onSubmit={onSubmitInterpretation}
-                    >
-                        <textarea className="w-96 h-96" name="textarea" placeholder="write your interpretation here"></textarea>
-                        <button type="submit">Save</button>
-                    </form>
-                }
-
-            </main>
-            <Footer userLoggedIn={true} page="create-interpretation" /> */}
-
-{/* // <li className="w-11/12 h-14 bg-gray-200" key={artist.id}>
-                    //     <button className="px-2 w-full h-full flex items-center justify-start"
-                    //         onClick={
-                    //             event => {
-                    //                 event.preventDefault()
-
-                    //                 onClickArtist(artist)
-                    //             }}
-                    //     >{artist.name}
-                    //     </button>
-                    // </li> */}

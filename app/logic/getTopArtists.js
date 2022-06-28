@@ -3,7 +3,6 @@ import { context } from '.'
 import Apium from '../vendor/Apium'
 
 export async function getTopArtists(token) {
-    debugger
     validateJWT(token)
 
     const api = new Apium(context.API_URL)

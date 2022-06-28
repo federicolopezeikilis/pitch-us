@@ -1,6 +1,6 @@
-export const ButtonBlue = ({ className, children, ...props }) => {
+export const ButtonBlue = ({ className, children, onClick, ...props }) => {
     return (
-        <button {...props}
+        <button onClick={onClick} {...props}
             className={`font-bold text-myblue ${className}`}>
             {children}
         </button>

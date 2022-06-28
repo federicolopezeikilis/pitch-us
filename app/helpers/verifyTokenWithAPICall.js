@@ -37,6 +37,7 @@ export async function verifyTokenWithAPICall(req, res) {
 
                 res.writeHead(307, { Location: '/login' })
                 res.end()
+                return
             }
         }
     }

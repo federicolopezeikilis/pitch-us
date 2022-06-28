@@ -7,15 +7,6 @@ export async function retrieveUser(token) {
 
     const api = new Apium(context.API_URL)
 
-    // const hola = await berreApium(
-    //         'GET',
-    //         'http://localhost:8080/api/users',
-    //         {
-    //             headers: {
-    //                 Authorization: `Bearer ${token}`
-    //             }
-    //         })
-
     const { status, payload } = await api.get(
         'users',
         {

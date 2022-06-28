@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { HomeImage } from ".."
+import { HomeImage } from "../../components"
 
 export const HomeLink = ({ className, children, pageOn, onClick, ...props }) => {
     return (

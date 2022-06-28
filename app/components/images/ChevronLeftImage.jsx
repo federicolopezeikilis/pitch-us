@@ -1,6 +1,6 @@
 import Image from 'next/image'
 
-export const ChevronLeftImage = ({ className, children, pageOn, color, ...props }) => {
+export const ChevronLeftImage = ({ className, children, color, ...props }) => {
     return (
         <figure className={`flex items-center justify-center ${className}`} {...props}>
             <Image 

@@ -11,7 +11,7 @@ export async function retrieveInterpretationFromSong(songName, artistName, inter
 
     const { status, payload } = await api.get(
         `songs/${songName}/artists/${artistName}/interpretations/${interpretationId}`)
-        debugger
+        
     const data = JSON.parse(payload)
 
     if (status === 200) return data

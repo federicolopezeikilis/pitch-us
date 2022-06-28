@@ -1,4 +1,4 @@
-import { retrieveArtistsAndSongs } from "../logic"
+import { retrieveArtistsAndSongs } from '../logic'
 import { Header, Footer, SearchForm, FlexColSection } from '../components'
 import { verifyTokenWithAPICall } from '../helpers'
 import { useState } from 'react'
@@ -10,7 +10,7 @@ export default function Search({ token }) {
     const waiting = 0
 
     const onChangeQueryTimeout = async (query, waitingPreviousValue) => {
-        debugger
+        
         if (waitingPreviousValue === waiting) {
             try {
 
@@ -34,7 +34,7 @@ export default function Search({ token }) {
 
             setTimeout(function () {
                 onChangeQueryTimeout(query, waitingActualValue)
-            }, 1000)
+            }, 500)
 
         } else {
             waiting ++

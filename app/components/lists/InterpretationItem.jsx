@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import { RankImage } from '../images'
-import { InterpretationsList } from './InterpretationsList'
 
 export const InterpretationItem = ({ className, children, interpretation, artistName, songName, ...props }) => {
     const rankAmountSum = interpretation.ranks.reduce((previousValue, currentValue) => {
@@ -24,23 +23,5 @@ export const InterpretationItem = ({ className, children, interpretation, artist
             </Link>
         </li>
     )
-
-    // return (
-    //     <li className={`w-full h-14 bg-primary shadow-custom-items ${className}`} {...props} key={interpretation.id}>
-    //         <Link
-    //             href={`/artist/${artistName.split(' ').join('-').toLowerCase()}/song/${songName.split(' ').join('-').toLowerCase()}/interpretation/${interpretation.id}`} >
-    //             <a className="w-full h-full px-4 grid">
-    //                 <p className="text-mygrey">{interpretation.user.username}</p>
-    //                 <div className="flex justify-between items-center gap-6">
-    //                     <div className="flex items-center gap-1">
-    //                         <RankImage className="w-6 h-6 flex items-center justify-center" />
-    //                         <p className="font-medium text-mygrey">{rankAverage}</p>
-    //                     </div>
-    //                     <p className="text-xs text-mygrey">({interpretation.ranks.length})</p>
-    //                 </div>
-    //             </a>
-    //         </Link>
-    //     </li>
-    // )
 }
 

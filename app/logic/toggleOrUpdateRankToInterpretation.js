@@ -3,15 +3,12 @@ import Apium from '../vendor/Apium'
 import { context } from './context'
 
 export async function toggleOrUpdateRankToInterpretation(token, songId, interpretationId, amount) {
-    debugger
     validateJWT(token)
     validateStringNotEmptyNoSpaces(songId)
     validateStringNotEmptyNoSpaces(interpretationId)
     validateRank(amount)
 
     const api = new Apium(context.API_URL)
-
-    debugger
 
     const { status, payload } = await api.post(
         `/rank/songs/${songId}/interpretations/${interpretationId}`,

@@ -1,5 +1,4 @@
 import { SecondaryButton, Fieldset, Input, PasswordInput, Label, CheckboxInput, BlueAnchor } from '..'
-import Link from 'next/link'
 
 export function RegisterForm({ className, children, onSubmit, ...props }) {
     return (

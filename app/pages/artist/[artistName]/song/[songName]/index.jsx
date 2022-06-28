@@ -1,16 +1,22 @@
 import Link from 'next/link'
 import { verifyTokenWithAPICall } from '../../../../../helpers'
 import { useRouter } from 'next/router'
-import { useState } from 'react'
-import { Title, Title2, Title3, ChevronLeftImage, SongIconImage, FavoriteImage, Footer, FlexColSection, InterpretationsList, Tag, ButtonBlue, ChevronUpImage } from '../../../../../components'
+import { useContext, useState } from 'react'
+import { Title, Title2, Title3, ChevronLeftImage, SongIconImage, FavoriteImage, Footer, FlexColSection, InterpretationsList, Tag, ButtonBlue, Context } from '../../../../../components'
 import { retrieveSong, retrieveInterpretationsFromSong } from '../../../../../logic'
 
 export default function Song({ interpretations, song, token }) {
     const router = useRouter()
 
+    const { handleFeedback } = useContext(Context)
+
     const [likedSong, setLikedSong] = useState(false)
 
     const artistName = song.artist.name
+
+    const handleOnNewInterpretationClick = () => {
+        handleFeedback('info', 'Login needed', 'You should log in to create an interpretation')
+    }
 
     const onBackClick = () => {
         router.back()
@@ -48,7 +54,6 @@ export default function Song({ interpretations, song, token }) {
             </div>
         </header>
 
-        {/* <FlexColSection class="w-full min-h-screen h-full overflow-scroll flex flex-col items-center"> */}
         <div className="flex-1 overflow-y-auto">
             <FlexColSection className="items-center">
 
@@ -58,7 +63,7 @@ export default function Song({ interpretations, song, token }) {
                         <p className="text-xs text-mygrey">({interpretations.length})</p>
                     </div>
                     <Link href='/create-interpretation'>
-                        <ButtonBlue>Add New</ButtonBlue>
+                        <ButtonBlue onClick={handleOnNewInterpretationClick} >Add New</ButtonBlue>
                     </Link>
                 </div>
 
@@ -77,7 +82,7 @@ export default function Song({ interpretations, song, token }) {
 }
 
 export async function getServerSideProps({ params, req, res }) {
-    const { token } = await verifyTokenWithAPICall(req, res)
+    const obj = await verifyTokenWithAPICall(req, res)
 
 
     const [interpretations, song] = await Promise.all([
@@ -85,11 +90,23 @@ export async function getServerSideProps({ params, req, res }) {
         retrieveSong(params.songName, params.artistName)
     ])
 
-    return {
-        props: {
-            interpretations,
-            song,
-            token
+    if (obj) {
+        const { token } = obj
+
+        return {
+            props: {
+                token,
+                song,
+                interpretations
+            }
+        }
+    } else {
+        return {
+            props: {
+                song,
+                interpretations
+            }
         }
     }
 }
+

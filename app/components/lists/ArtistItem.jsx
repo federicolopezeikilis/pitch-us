@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { ArtistIconImage } from '..'
+import { ArtistIconImage } from '../../components'
 
 export const ArtistItem = ({ className, children, artist, onClick, ...props }) => {
     return (

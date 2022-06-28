@@ -1,5 +1,4 @@
 import { useContext } from 'react'
-// import Link from 'next/link'
 import { authenticateUser } from '../logic'
 import { setCookie, verifyTokenWithAPICall } from '../helpers'
 import { useRouter } from 'next/router'

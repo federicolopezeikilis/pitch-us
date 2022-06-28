@@ -27,7 +27,6 @@ export default function Home({ token, isSessionActive, topArtists }) {
     setDialogOpen(true)
   }
   
-
   return (
     <div className={'flex flex-col h-screen'}>
       <Header title="Explore" />
@@ -66,7 +65,7 @@ export default function Home({ token, isSessionActive, topArtists }) {
 }
 
 export async function getServerSideProps(ctx) {
-  debugger
+  
   const { req, res } = ctx
   const obj = await verifyTokenWithAPICall(req, res)
 
@@ -74,7 +73,7 @@ export async function getServerSideProps(ctx) {
     const { token } = obj
 
     if (ctx.query.code) {
-      debugger
+      
       const isSessionActive = await checkSpotifySession(token, ctx.query.code)
 
       if (isSessionActive) {

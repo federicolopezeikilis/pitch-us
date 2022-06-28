@@ -5,7 +5,6 @@ import { context } from './context'
 export async function createSong(token, { artist, name, genres, album, date }) {
     validateJWT(token)
     validateStringNotEmptyNoSpaces(artist)
-
     validateStringNotEmptyOrBlank(name, 'song name')
     if (genres) validateGenres(genres)
     if (album) validateStringNotEmptyOrBlank(album, 'album')
