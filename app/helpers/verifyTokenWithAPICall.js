@@ -7,7 +7,7 @@ export async function verifyTokenWithAPICall(req, res) {
 
     const token = cookies.get('token')
 
-    if (token) {
+    function apiCall() {
         const api = new Apium(context.API_URL)
 
         const { status, payload } = await api.get('users/auth', {
@@ -26,7 +26,7 @@ export async function verifyTokenWithAPICall(req, res) {
 
                 return { token, userId }
             }
-        } else if(status === 401 || status === 404) {
+        } else if (status === 401 || status === 404) {
             cookies.set('token')
 
             if (req.url.includes('/profile/settings')
@@ -39,6 +39,16 @@ export async function verifyTokenWithAPICall(req, res) {
                 res.end()
                 return
             }
+        }
+    }
+
+    if (token) {
+
+        try {
+            apiCall()
+        } catch (error) {
+            console.log(error)
+            apiCall()
         }
     }
 

@@ -71,7 +71,6 @@ class Apium {
             })
 
             xhr.addEventListener('error', error => {
-                debugger
                 console.log(error)
                 
                 reject(new Error('API call fail'))
