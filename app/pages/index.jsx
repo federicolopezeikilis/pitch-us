@@ -65,8 +65,8 @@ export default function Home({ token, isSessionActive, topArtists }) {
 }
 
 export async function getServerSideProps(ctx) {
-  
   const { req, res } = ctx
+  
   const obj = await verifyTokenWithAPICall(req, res)
 
   if (obj) {

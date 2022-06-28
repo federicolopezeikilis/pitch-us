@@ -65,8 +65,11 @@ export default function Search({ token }) {
 
 
 export async function getServerSideProps({ req, res }) {
-    const token = await verifyTokenWithAPICall(req, res)
-    if (token) {
+    const obj = await verifyTokenWithAPICall(req, res)
+    
+    if (obj) {
+        const { token } = obj
+     
         return {
             props: { token }
         }

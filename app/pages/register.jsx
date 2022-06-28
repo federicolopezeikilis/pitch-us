@@ -43,7 +43,7 @@ export default function Register(props) {
 }
 
 export async function getServerSideProps({ req, res }) {
-    const token = verifyTokenWithAPICall(req, res)
+    await verifyTokenWithAPICall(req, res)
 
     return {
         props: {}
