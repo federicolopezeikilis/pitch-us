@@ -65,7 +65,7 @@ export default function Interpretation({ token, userId, interpretation, song }) 
                         </button>
                         <div className="flex flex-col justify-between gap-2">
                             <div className="flex gap-2">
-                                <InterpretationIconImage className="w-6 h-6 flex items-center justify-center" grey={true} />
+                                <InterpretationIconImage className="w-6 h-6 flex items-center justify-center" color="grey" />
                                 <Title2>Interpretation</Title2>
                             </div>
                             <div className="flex justify-between items-center">
