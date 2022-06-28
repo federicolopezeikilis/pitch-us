@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useState, useContext } from "react"
 import { Context, Title, Title2, Title3, ChevronLeftImage, Footer, Slider, FlexColSection, InterpretationIconImage, SaveFavoriteImage, AvatarDemoImage, ChordButton, CircleChordButton, ExpandImage, RateYellowImage, RateYellowFullImage, RankInterpretationByUser } from '../../../../../../../components'
-import { retrieveInterpretationFromSong, retrieveSong, toggleOrUpdateRankToInterpretation } from 'logic'
+import { retrieveInterpretationFromSong, retrieveSong, toggleOrUpdateRankToInterpretation } from '../../../../../../../logic'
 import { verifyTokenWithAPICall, getChords, generateInterpretation, generateChordImages } from "../../../../../../../helpers"
 
 export default function Interpretation({ token, userId, interpretation, song }) {

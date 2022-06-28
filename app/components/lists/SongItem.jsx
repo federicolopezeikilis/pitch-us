@@ -5,7 +5,6 @@ export const SongItem = ({ className, children, song, onClick, ...props }) => {
     return (
         <li
         className={`w-full h-14 bg-primary shadow-custom-items ${className}`}
-        key={song.id}
         onClick={onClick}
         {...props}>
             

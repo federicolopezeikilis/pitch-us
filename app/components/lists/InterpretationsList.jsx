@@ -13,7 +13,7 @@ export const InterpretationsList = ({ className, children, interpretations, arti
             </div>
 
             {interpretations.length > 0 && interpretations.map(interpretation => {
-                return <InterpretationItem interpretation={interpretation} artistName={artistName} songName={songName} />
+                return <InterpretationItem interpretation={interpretation} key={interpretation.id} artistName={artistName} songName={songName} />
             })
             }
         </ul>

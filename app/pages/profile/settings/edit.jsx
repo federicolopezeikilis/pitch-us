@@ -5,7 +5,7 @@ import { verifyTokenWithAPICall } from '../../../helpers'
 import { useRouter } from 'next/router'
 import { ChevronLeftImage, EditProfileForm, FlexColSection, Footer, Context } from '../../../components'
 
-export default function editProfile({ token, user }) {
+export default function EditProfile({ token, user }) {
     const { handleFeedback } = useContext(Context)
     const router = useRouter()
 

@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { SongIconImage } from '../../components'
+import { SongIconImage, ChevronDownImage } from '../../components'
 
 export const SongDetailedItem = ({ className, children, song, ...props }) => {
     return (

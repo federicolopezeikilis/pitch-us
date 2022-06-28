@@ -9,7 +9,7 @@ export const InterpretationItem = ({ className, children, interpretation, artist
     const rankAverage = rankAmountSum / interpretation.ranks.length
 
     return (
-        <li className={`w-full h-14 bg-primary shadow-custom-items ${className}`} {...props} key={interpretation.id}>
+        <li className={`w-full h-14 bg-primary shadow-custom-items ${className}`} {...props} >
             <Link
                 href={`/artist/${artistName.split(' ').join('-').toLowerCase()}/song/${songName.split(' ').join('-').toLowerCase()}/interpretation/${interpretation.id}`} >
                 <a className="w-full h-full px-4 grid grid-cols-[1fr_68px_50px]">

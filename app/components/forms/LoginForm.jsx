@@ -26,7 +26,7 @@ export function LoginForm({ className, children, onSubmit, ...props }) {
             </div>
             <SecondaryButton type="submit">Log in</SecondaryButton>
             <div className="w-full gap-2 flex justify-center">
-                <p className="text-myblack text-xs">Don't have an account ?</p>
+                <p className="text-myblack text-xs">{"Don't have an account ?"}</p>
                 <Link href="/register">
                     <BlueAnchor>Sign Up</BlueAnchor>
                 </Link>
