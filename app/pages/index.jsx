@@ -15,7 +15,7 @@ export default function Home({ token, isSessionActive, topArtists }) {
     setDialogOpen('close')
   }
 
-  if (!dialogOpen && !isSessionActive) {
+  if (token && !dialogOpen && !isSessionActive) {
     handleDialog({
       title: 'Personalize your experience!',
       description: 'Connect now your Spotify account to easily find your favorites songs and artists.',
