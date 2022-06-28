@@ -7,7 +7,7 @@ export async function verifyTokenWithAPICall(req, res) {
 
     const token = cookies.get('token')
 
-    function apiCall() {
+    async function apiCall() {
         const api = new Apium(context.API_URL)
 
         const { status, payload } = await api.get('users/auth', {
