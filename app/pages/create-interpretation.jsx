@@ -146,7 +146,7 @@ export default function CreateInterpretation({ token }) {
 
             handleFeedback('success', 'Interpretation created!', 'Redirecting to your new interpretation')
 
-            router.push(`/artist/${artist.name}/song/${song.name}/interpretation/${interpretationId}`)
+            router.push(`/artist/${artist.name.split(' ').join('-')}/song/${song.name.split(' ').join('-')}/interpretation/${interpretationId}`)
         } catch (error) {
             handleFeedback('error', 'Error', error.message)
         }
