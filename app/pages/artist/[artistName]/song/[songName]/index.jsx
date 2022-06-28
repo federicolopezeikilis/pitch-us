@@ -31,7 +31,7 @@ export default function Song({ interpretations, song, token }) {
                     <ChevronLeftImage />
                 </button>                <div className="flex flex-col justify-between gap-2">
                     <div className="flex gap-2">
-                        <SongIconImage className="w-6 h-6" grey={true} />
+                        <SongIconImage className="w-6 h-6" color="grey" />
                         <Title2>Song</Title2>
                     </div>
                     <div className="flex justify-between items-center">
