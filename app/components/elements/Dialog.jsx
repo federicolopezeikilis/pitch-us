@@ -2,7 +2,7 @@ import Link from "next/link";
 const querystring = require('query-string');
 
 export function Dialog({ level, title, description, button1, button2, onCloseClick, onCloseDialog }) {
-    const client_id = '93f6f6ebc007423fa83d846f4713a03a'
+    const client_id = 'b7ecd28f242443eb8ab8fd656dea2659'
     const redirect_uri = 'https://pitch-us.vercel.app/'
 
     const state = Math.random() * 10000;
