@@ -16,14 +16,15 @@ export async function getTopArtists(token) {
             },
         })
 
-    const data = JSON.parse(payload)
 
-    if (status === 200) return data
+    if (status === 200) {
+        const data = JSON.parse(payload)
 
-    else if (status >= 400 && status < 500) {
+        return data
+    } else if (status >= 400 && status < 500) {
+        const data = JSON.parse(payload)
 
         throw new Error(data.error)
-
     } else
         throw new Error('server error')
 }
