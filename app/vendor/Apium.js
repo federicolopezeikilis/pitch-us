@@ -34,7 +34,7 @@ class Apium {
      * @param {function} callback  The callback function that attends the response's result ({ status, payload})
      */
     call(method, urlOrPath, options, callback) {
-        debugger
+        console.log(method, urlOrPath, options, callback)
         if (callback) {
             const xhr = new XMLHttpRequest
 

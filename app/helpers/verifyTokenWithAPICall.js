@@ -33,7 +33,7 @@ export async function verifyTokenWithAPICall(req, res) {
             }
         } else if (status === 401 || status === 404) {
             console.log('line 34')
-
+            
             console.log(payload)
 
             cookies.set('token')
