@@ -77,7 +77,7 @@ class Apium {
             })
 
             const url = urlOrPath.toLowerCase().startsWith('http://') || urlOrPath.toLowerCase().startsWith('https://') ? urlOrPath : `${this.baseUrl}/${urlOrPath}`
-
+            console.log(url)
             xhr.open(method, url)
 
             if (options) {
