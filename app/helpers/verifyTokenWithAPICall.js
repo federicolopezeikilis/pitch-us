@@ -3,6 +3,33 @@ import Apium from '../vendor/Apium'
 import { context } from '../logic'
 
 export async function verifyTokenWithAPICall(req, res) {
+    const errorHeroku = `<!DOCTYPE html>
+	<html>
+	  <head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta charset="utf-8">
+		<title>No such app</title>
+		<style media="screen">
+		  html,body,iframe {
+			margin: 0;
+			padding: 0;
+		  }
+		  html,body {
+			height: 100%;
+			overflow: hidden;
+		  }
+		  iframe {
+			width: 100%;
+			height: 100%;
+			border: 0;
+		  }
+		</style>
+	  </head>
+	  <body>
+		<iframe src="//www.herokucdn.com/error-pages/no-such-app.html"></iframe>
+	  </body>
+	</html>`
+
     const cookies = new Cookies(req, res)
 
     const token = cookies.get('token')
@@ -17,7 +44,7 @@ export async function verifyTokenWithAPICall(req, res) {
                     Authorization: `Bearer ${token}`
                 }
             })
-    
+
             if (status === 200) {
                 console.log('line 21')
                 if (req.url.includes('/login') || req.url.includes('/register')) {
@@ -26,30 +53,32 @@ export async function verifyTokenWithAPICall(req, res) {
                     res.end()
                 } else {
                     console.log('line 27')
-    
+
                     const { userId } = JSON.parse(payload)
-    
+
                     return { token, userId }
                 }
-            } else if (status === 401) {
+            } else if (status === 404 && payload === errorHeroku) {
+                console.log('heroku error catch')
+                callApi()
+
+            } else if (status === 401 || status === 404) {
                 console.log('line 34')
-                
+
                 cookies.set('token')
-    
+
                 if (req.url.includes('/profile/settings')
                     || req.url.includes('/profile/edit')
                     || req.url.includes('/profile/change-password')
                     || req.url.includes('/profile/delete-account')
                     || req.url.includes('/create-interpretation')) {
-    
+
                     console.log('line 44')
-    
+
                     res.writeHead(307, { Location: '/login' })
                     res.end()
                     return
                 }
-            } else if (status === 404) {
-                callApi()
             }
         }
     }
@@ -60,7 +89,7 @@ export async function verifyTokenWithAPICall(req, res) {
         || req.url.includes('/profile/delete-account')
         || req.url.includes('/create-interpretation')) {
 
-            console.log('line 59')
+        console.log('line 59')
 
 
         res.writeHead(307, { Location: '/login' })
