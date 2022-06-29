@@ -6,7 +6,7 @@ export async function verifyTokenWithAPICall(req, res) {
     const cookies = new Cookies(req, res)
 
     const token = cookies.get('token')
-
+    console.log(token || 'no hay token')
     if (token) {
         console.log('line 11')
         const api = new Apium(context.API_URL)
