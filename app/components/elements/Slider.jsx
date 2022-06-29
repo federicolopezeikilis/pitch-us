@@ -11,7 +11,7 @@ export function Slider({ className, children, chord, onCloseChordClick, ...props
                 </button>
             </div>
             <p className="text-mygrey">Navigate between views for chord variants</p>
-            <div className="overflow-x-auto overflow-y-auto">
+            <div className="w-full overflow-x-auto overflow-y-auto">
                 {children}
             </div>
         </div>
