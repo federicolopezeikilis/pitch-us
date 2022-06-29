@@ -3,7 +3,7 @@ import Chord from '@tombatossals/react-chords/lib/Chord'
 export const ChordFigure = ({ className, children, chord, instrument, lite, ...props }) => {
     return (
         <figure {...props}
-            className={`min-w-[370px] border border-red-500 ${className}`}>
+            className={`min-w-[370px] ${className}`}>
             {children}
 
             <Chord

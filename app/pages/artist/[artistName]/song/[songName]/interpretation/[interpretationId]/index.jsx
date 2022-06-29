@@ -82,7 +82,7 @@ export default function Interpretation({ token, userId, interpretation, song }) 
                     </div>
                 </header>
 
-                <div className="mb-4 bg-primary flex-1 overflow-y-auto ">
+                <div className="bg-primary flex-1 overflow-y-auto ">
                     <FlexColSection className="px-4 items-center">
 
                         <div className="w-full py-4 flex flex-col gap-2">
