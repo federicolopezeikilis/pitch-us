@@ -32,7 +32,7 @@ export async function verifyTokenWithAPICall(req, res) {
 
     async function callApi() {
         const api = new Apium(context.API_URL)
-
+        console.log('api call to do')
         const { status, payload } = await api.get('users/auth', {
             headers: {
                 Authorization: `Bearer ${token}`
