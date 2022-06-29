@@ -21,11 +21,13 @@ export async function checkSpotifySession(token, code) {
             }
         })
 
-    const data = JSON.parse(payload)
+    if (status === 200) {
+        const data = JSON.parse(payload)
 
-    if (status === 200) return data.isSessionActive
+        return data.isSessionActive
+    } else if (status >= 400 && status < 500) {
+        const data = JSON.parse(payload)
 
-    else if (status >= 400 && status < 500) throw new Error(data.error)
-
-    else if (status >= 500) throw new Error('server error')
+        throw new Error(data.error)
+    } else if (status >= 500) throw new Error('server error')
 }
