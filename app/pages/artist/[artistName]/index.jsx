@@ -2,7 +2,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { ArtistIconImage, ArtistsAndSongsResultsList, ChevronLeftImage, FavoriteImage, FlexColSection, Footer, Title2, Title, ButtonBlue, Context } from '../../../components'
 import { retrieveSongsOfArtist } from '../../../logic'
-import { useContext, useState } from 'react'
+import { isValidElement, useContext, useState } from 'react'
 import { verifyTokenWithAPICall } from '../../../helpers'
 
 export default function Artist({ token, songs }) {
@@ -15,7 +15,8 @@ export default function Artist({ token, songs }) {
     const artist = songs[0].artist.name
 
     const handleOnNewSongClick = () => {
-        handleFeedback('info', 'Login needed', 'You should log in to create an interpretation')
+        if(!token)
+            handleFeedback('info', 'Login needed', 'You should log in to create an interpretation')
     }
 
     const onBackClick = () => {
@@ -45,7 +46,7 @@ export default function Artist({ token, songs }) {
             <div className="w-full h-14 px-4 bg-primary flex items-center justify-between">
                 <h3 className="text-xl text-myblack font-bold">Songs</h3>
                 <Link href='/create-interpretation'>
-                    <ButtonBlue onClick={handleOnNewSongClick }>Add New Song</ButtonBlue>
+                    <ButtonBlue onClick={handleOnNewSongClick}>Add New Song</ButtonBlue>
                 </Link>
             </div>
             <ArtistsAndSongsResultsList songs={songs} />

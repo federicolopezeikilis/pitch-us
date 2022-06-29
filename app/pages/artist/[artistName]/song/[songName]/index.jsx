@@ -15,7 +15,8 @@ export default function Song({ interpretations, song, token }) {
     const artistName = song.artist.name
 
     const handleOnNewInterpretationClick = () => {
-        handleFeedback('info', 'Login needed', 'You should log in to create an interpretation')
+        if(!token) 
+            handleFeedback('info', 'Login needed', 'You should log in to create an interpretation')
     }
 
     const onBackClick = () => {
