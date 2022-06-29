@@ -25,7 +25,6 @@ export async function verifyTokenWithAPICall(req, res) {
                 res.end()
             } else {
                 console.log('line 27')
-                console.log(payload)
 
                 const { userId } = JSON.parse(payload)
 
@@ -34,8 +33,6 @@ export async function verifyTokenWithAPICall(req, res) {
         } else if (status === 401 || status === 404) {
             console.log('line 34')
             
-            console.log(payload)
-
             cookies.set('token')
 
             if (req.url.includes('/profile/settings')
