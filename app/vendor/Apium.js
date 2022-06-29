@@ -34,7 +34,6 @@ class Apium {
      * @param {function} callback  The callback function that attends the response's result ({ status, payload})
      */
     call(method, urlOrPath, options, callback) {
-        console.log(method, urlOrPath, options, callback)
         if (callback) {
             const xhr = new XMLHttpRequest
 
@@ -66,7 +65,9 @@ class Apium {
 
             xhr.addEventListener('load', event => {
                 const { status, responseText: payload } = event.target
-
+                
+                console.log('req', method, url, options)
+                console.log('res', status, payload)
                 resolve({ status, payload })
             })
 
