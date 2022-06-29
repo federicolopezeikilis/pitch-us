@@ -60,6 +60,7 @@ export async function verifyTokenWithAPICall(req, res) {
                 }
             } else if (status === 404 && payload === errorHeroku) {
                 console.log('heroku error catch')
+                
                 callApi()
 
             } else if (status === 401 || status === 404) {
