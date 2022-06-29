@@ -70,15 +70,16 @@ export async function getServerSideProps(ctx) {
   const obj = await verifyTokenWithAPICall(req, res)
 
   if (obj) {
+    console.log('home 73')
     const { token } = obj
 
     if (ctx.query.code) {
-      
+      console.log('home 77')
       const isSessionActive = await checkSpotifySession(token, ctx.query.code)
 
       if (isSessionActive) {
         const topArtists = await getTopArtists(token)
-
+        console.log('home 82')
         return {
           props: {
             'token': token,
@@ -88,6 +89,7 @@ export async function getServerSideProps(ctx) {
         }
 
       } else {
+        console.log('home 92')
         return {
           props: {
             'token': token,
@@ -96,9 +98,11 @@ export async function getServerSideProps(ctx) {
         }
       }
     } else {
+      console.log('home 101')
       const isSessionActive = await checkSpotifySession(token)
 
       if (isSessionActive) {
+        console.log('home 105')
         const topArtists = await getTopArtists(token)
 
         return {
@@ -109,6 +113,7 @@ export async function getServerSideProps(ctx) {
           }
         }
       } else {
+        console.log('home 116')
         return {
           props: {
             'token': token,
@@ -118,6 +123,7 @@ export async function getServerSideProps(ctx) {
       }
     }
   } else {
+    console.log('home 126')
     return {
       props: {}
     }

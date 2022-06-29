@@ -8,6 +8,7 @@ export async function verifyTokenWithAPICall(req, res) {
     const token = cookies.get('token')
 
     if (token) {
+        console.log('line 11')
         const api = new Apium(context.API_URL)
 
         const { status, payload } = await api.get('users/auth', {
@@ -17,16 +18,21 @@ export async function verifyTokenWithAPICall(req, res) {
         })
 
         if (status === 200) {
+            console.log('line 21')
             if (req.url.includes('/login') || req.url.includes('/register')) {
-
+                console.log('line 23')
                 res.writeHead(307, { Location: '/' })
                 res.end()
             } else {
+                console.log('line 27')
+
                 const { userId } = JSON.parse(payload)
 
                 return { token, userId }
             }
-        } else if(status === 401 || status === 404) {
+        } else if (status === 401 || status === 404) {
+            console.log('line 34')
+
             cookies.set('token')
 
             if (req.url.includes('/profile/settings')
@@ -34,6 +40,8 @@ export async function verifyTokenWithAPICall(req, res) {
                 || req.url.includes('/profile/change-password')
                 || req.url.includes('/profile/delete-account')
                 || req.url.includes('/create-interpretation')) {
+
+                console.log('line 44')
 
                 res.writeHead(307, { Location: '/login' })
                 res.end()
@@ -48,9 +56,13 @@ export async function verifyTokenWithAPICall(req, res) {
         || req.url.includes('/profile/delete-account')
         || req.url.includes('/create-interpretation')) {
 
+            console.log('line 59')
+
+
         res.writeHead(307, { Location: '/login' })
         res.end()
 
         return
     }
+    console.log('line 67')
 }

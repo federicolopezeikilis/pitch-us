@@ -15,7 +15,7 @@ export default function Song({ interpretations, song, token }) {
     const artistName = song.artist.name
 
     const handleOnNewInterpretationClick = () => {
-        if(!token) 
+        if (!token)
             handleFeedback('info', 'Login needed', 'You should log in to create an interpretation')
     }
 
@@ -64,7 +64,9 @@ export default function Song({ interpretations, song, token }) {
                         <p className="text-xs text-mygrey">({interpretations.length})</p>
                     </div>
                     <Link href='/create-interpretation'>
-                        <ButtonBlue onClick={handleOnNewInterpretationClick} >Add New</ButtonBlue>
+                        <a>
+                            <ButtonBlue onClick={handleOnNewInterpretationClick} >Add New</ButtonBlue>
+                        </a>
                     </Link>
                 </div>
 
