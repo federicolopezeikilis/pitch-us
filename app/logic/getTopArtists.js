@@ -16,15 +16,9 @@ export async function getTopArtists(token) {
             },
         })
 
-
-    if (status === 200) {
-        const data = JSON.parse(payload)
-
-        return data
-    } else if (status >= 400 && status < 500) {
-        const data = JSON.parse(payload)
-
-        throw new Error(data.error)
-    } else
-        throw new Error('server error')
+    const data = JSON.parse(payload)
+    if (status === 200) return data
+    else if (status >= 400 && status < 500) throw new Error(data.error)
+    else if (status === 500 && data.error === 'Error in top artists with Spotify') return []
+    else throw new Error('server error')
 }
