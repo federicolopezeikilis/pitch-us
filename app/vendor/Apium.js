@@ -63,7 +63,7 @@ class Apium {
         } else return new Promise((resolve, reject) => {
             let xhr
 
-            function callRecursive(method, urlOrPath, options) {
+            const callRecursive = (method, urlOrPath, options) => {
                 xhr = new XMLHttpRequest
 
                 xhr.addEventListener('load', event => {
@@ -76,6 +76,7 @@ class Apium {
                         const error = JSON.parse(payload)
 
                         if (error.includes('//www.herokucdn.com/error-pages/no-such-app.html')) {
+                            console.log('call recursive used')
                             callRecursive(method, urlOrPath, options)
                         }
                     }
