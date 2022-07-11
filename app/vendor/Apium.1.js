@@ -61,50 +61,35 @@ class Apium {
                 xhr.send(body)
             } else xhr.send()
         } else return new Promise((resolve, reject) => {
-            let xhr
+            const xhr = new XMLHttpRequest
 
-            function callRecursive(method, urlOrPath, options) {
-                xhr = new XMLHttpRequest
+            xhr.addEventListener('load', event => {
+                const { status, responseText: payload } = event.target
+                
+                console.log('req', method, url, options)
+                console.log('res', status, payload)
+                resolve({ status, payload })
+            })
 
-                xhr.addEventListener('load', event => {
-                    const { status, responseText: payload } = event.target
+            xhr.addEventListener('error', error => {
+                console.log(error)
+                
+                reject(new Error('API call fail'))
+            })
 
-                    console.log('req', method, url, options)
-                    console.log('res', status, payload)
+            const url = urlOrPath.toLowerCase().startsWith('http://') || urlOrPath.toLowerCase().startsWith('https://') ? urlOrPath : `${this.baseUrl}/${urlOrPath}`
+            console.log(url)
+            xhr.open(method, url)
 
-                    if (status === 404) {
-                        const error = JSON.parse(payload)
+            if (options) {
+                const { headers, body } = options
 
-                        if (error.includes('//www.herokucdn.com/error-pages/no-such-app.html')) {
-                            callRecursive(method, urlOrPath, options)
-                        }
-                    }
+                if (headers)
+                    for (const key in headers)
+                        xhr.setRequestHeader(key, headers[key])
 
-                    resolve({ status, payload })
-                })
-
-                xhr.addEventListener('error', error => {
-                    console.log(error)
-
-                    reject(new Error('API call fail'))
-                })
-
-                const url = urlOrPath.toLowerCase().startsWith('http://') || urlOrPath.toLowerCase().startsWith('https://') ? urlOrPath : `${this.baseUrl}/${urlOrPath}`
-                console.log(url)
-                xhr.open(method, url)
-
-                if (options) {
-                    const { headers, body } = options
-
-                    if (headers)
-                        for (const key in headers)
-                            xhr.setRequestHeader(key, headers[key])
-
-                    xhr.send(body)
-                } else xhr.send()
-            }
-
-            callRecursive(method, urlOrPath, options)
+                xhr.send(body)
+            } else xhr.send()
         })
     }
 

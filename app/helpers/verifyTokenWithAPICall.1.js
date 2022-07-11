@@ -7,7 +7,6 @@ export async function verifyTokenWithAPICall(req, res) {
 
     const token = cookies.get('token')
     console.log(token || 'no hay token')
-
     if (token) {
         console.log('line 11')
         const api = new Apium(context.API_URL)
@@ -33,6 +32,14 @@ export async function verifyTokenWithAPICall(req, res) {
             }
         } else if (status === 401 || status === 404) {
             console.log('line 34')
+            
+            /* 
+            const error = JSON.parse(payload)
+
+            if(error.includes('//www.herokucdn.com/error-pages/no-such-app.html')) {
+                
+            }
+            */
 
             cookies.set('token')
 
